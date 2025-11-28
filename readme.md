@@ -31,9 +31,9 @@ src/
 ### Phase 1: Basic Cache (No Concurrency, No LRU)
 **Goal**: Implement simple cache with HashMap
 
-- [ ] Create `Cache<K, V>` struct with internal `HashMap`
-- [ ] Implement `new(capacity: usize)`
-- [ ] Implement `get(&self, key: &K) -> Option<&V>`
+- [x] Create `Cache<K, V>` struct with internal `HashMap`
+- [x] Implement `new(capacity: usize)`
+- [x] Implement `get(&self, key: &K) -> Option<&V>`
 - [ ] Implement `put(&mut self, key: K, value: V)`
 - [ ] Add capacity validation (reject when full)
 - [ ] Write basic unit tests

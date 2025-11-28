@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "MemoryCacheSystem"
+name = "memory_cache_system"
 version = "0.1.0"
