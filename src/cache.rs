@@ -14,14 +14,41 @@ impl<K, V> Cache<K, V> where K: Eq + std::hash::Hash {
         }
     }
 
+    pub fn put(&mut self, key: K, value: V) {
+        if self.map.len() >= self.capacity {
+            println!("Capacity is full");
+            return;
+        }
+        self.map.insert(key, value);
+    }
+
     pub fn get(&self, key: &K) -> Option<&V> {
         self.map.get(key)
     }
 
-    pub fn put(&mut self, key: K, value: V) {
-        if self.map.len() >= self.capacity {
-            return;
-        }
-        self.map.insert(key, value);
+}
+
+#[cfg(test)]
+mod rests {
+    use super::Cache;
+
+    #[test]
+    fn test_new() {
+        let cache: Cache::<String, String> = Cache::new(1000);
+        assert_eq!(cache.capacity, 1000);
+    }
+
+    #[test]
+    fn test_put() {
+        let mut cache: Cache::<String, String> = Cache::new(2000);
+        cache.put("1".to_string(), "Hello".to_string());
+        assert_eq!(cache.map["1"], "Hello".to_string());
+    }
+
+    #[test]
+    fn test_get() {
+        let mut cache: Cache::<String, String> = Cache::new(3000);
+        cache.put("1".to_string(), "Hello".to_string()); 
+        assert_eq!(cache.get(&"1".to_string()), Some(&"Hello".to_string()));
     }
 }

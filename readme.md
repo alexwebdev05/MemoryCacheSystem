@@ -34,8 +34,8 @@ src/
 - [x] Create `Cache<K, V>` struct with internal `HashMap`
 - [x] Implement `new(capacity: usize)`
 - [x] Implement `get(&self, key: &K) -> Option<&V>`
-- [ ] Implement `put(&mut self, key: K, value: V)`
-- [ ] Add capacity validation (reject when full)
+- [x] Implement `put(&mut self, key: K, value: V)`
+- [x] Add capacity validation (reject when full)
 - [ ] Write basic unit tests
 
 **Concepts**: Generics, HashMap, borrowing, lifetimes
