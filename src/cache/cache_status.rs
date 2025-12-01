@@ -2,21 +2,19 @@
 
 pub struct CacheStatus {
     hits: usize,
-    misses: usize,
-    evictions: usize
+    misses: usize
 }
 
 impl CacheStatus {
     pub fn new() -> CacheStatus {
         CacheStatus {
             hits: 0,
-            misses: 0,
-            evictions: 0
+            misses: 0
         }
     }
 
     pub fn display(&self) {
-        println!("Hits: {}\nMisses: {}\nEvictions: {}", self.hits, self.misses, self. evictions)
+        println!("Hits: {}\nMisses: {}", self.hits, self.misses)
     }
 
     pub fn hit(&mut self) {
@@ -37,7 +35,6 @@ mod tests {
         let cache_status = CacheStatus::new();
         assert_eq!(cache_status.hits, 0);
         assert_eq!(cache_status.misses, 0);
-        assert_eq!(cache_status.evictions, 0);
     }
 
     #[test]

@@ -47,11 +47,11 @@ src/
 
 - [x] Create `CacheStats` struct (hits, misses, evictions)
 - [x] Add `stats: CacheStats` to `Cache`
-- [ ] Increment `hits` on successful `get()`
-- [ ] Increment `misses` on failed `get()`
-- [ ] Implement `stats(&self) -> &CacheStats`
-- [ ] Implement `Display` trait for `CacheStats`
-- [ ] Write tests for statistics accuracy
+- [x] Increment `hits` on successful `get()`
+- [x] Increment `misses` on failed `get()`
+- [x] Implement `stats(&self) -> &CacheStats`
+- [x] Implement `Display` trait for `CacheStats`
+- [x] Write tests for statistics accuracy
 
 **Concepts**: Traits, immutable vs mutable methods
 
