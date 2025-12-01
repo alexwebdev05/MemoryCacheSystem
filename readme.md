@@ -36,7 +36,7 @@ src/
 - [x] Implement `get(&self, key: &K) -> Option<&V>`
 - [x] Implement `put(&mut self, key: K, value: V)`
 - [x] Add capacity validation (reject when full)
-- [ ] Write basic unit tests
+- [x] Write basic unit tests
 
 **Concepts**: Generics, HashMap, borrowing, lifetimes
 
@@ -45,8 +45,8 @@ src/
 ### Phase 2: Statistics System
 **Goal**: Add metrics tracking
 
-- [ ] Create `CacheStats` struct (hits, misses, evictions)
-- [ ] Add `stats: CacheStats` to `Cache`
+- [x] Create `CacheStats` struct (hits, misses, evictions)
+- [x] Add `stats: CacheStats` to `Cache`
 - [ ] Increment `hits` on successful `get()`
 - [ ] Increment `misses` on failed `get()`
 - [ ] Implement `stats(&self) -> &CacheStats`

@@ -1,1 +1,1 @@
-C:\Programacion\MemoryCacheSystem\target\debug\memory_cache_system.exe: C:\Programacion\MemoryCacheSystem\src\cache.rs C:\Programacion\MemoryCacheSystem\src\lib.rs C:\Programacion\MemoryCacheSystem\src\main.rs
+C:\Programacion\MemoryCacheSystem\target\debug\memory_cache_system.exe: C:\Programacion\MemoryCacheSystem\src\cache\cache.rs C:\Programacion\MemoryCacheSystem\src\cache\cache_status.rs C:\Programacion\MemoryCacheSystem\src\cache\mod.rs C:\Programacion\MemoryCacheSystem\src\lib.rs C:\Programacion\MemoryCacheSystem\src\main.rs

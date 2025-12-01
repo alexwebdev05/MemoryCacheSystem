@@ -15,7 +15,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         // Option
         let mut option = String::new();
-        print!("Choose an option (new, put, get, quit): ");
+        print!("Choose an option (new, put, get, quit, stats): ");
         io::stdout().flush()?;
         io::stdin().read_line(&mut option)?;
 
@@ -57,12 +57,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
                 if let Some(ref mut c) = cache {
                     match c.get(&key.trim().to_string()) {
-                        Some(value) => println!("Value: {}", value),
+                        Some(value) => {
+                            println!("Value: {}", value)
+                    },
                         _ => println!("Key not found")
                     }
                     
                 }
             },
+            "stats" => {
+                if let Some(ref mut c) = cache {
+                    c.stats();
+                }
+                println!("Cache does not exist")
+            }
             // Invalid or empty option
             _ => println!("Invalid option. Available: new, get, put")
         }

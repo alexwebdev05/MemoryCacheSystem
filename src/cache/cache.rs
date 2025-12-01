@@ -1,8 +1,11 @@
 use std::collections::HashMap;
 
+use super::CacheStatus;
+
 pub struct Cache<K, V> {
     map: HashMap<K, V>,
-    capacity: usize
+    capacity: usize,
+    stats: CacheStatus
 }
 
 impl<K, V> Cache<K, V> where K: Eq + std::hash::Hash {
@@ -10,7 +13,8 @@ impl<K, V> Cache<K, V> where K: Eq + std::hash::Hash {
     pub fn new(capacity: usize) -> Cache<K, V> {
         Cache {
             map: HashMap::new(),
-            capacity
+            capacity,
+            stats: CacheStatus::new()
         }
     }
 
@@ -26,10 +30,14 @@ impl<K, V> Cache<K, V> where K: Eq + std::hash::Hash {
         self.map.get(key)
     }
 
+    pub fn stats(&self) {
+        self.stats.display();
+    }
+
 }
 
 #[cfg(test)]
-mod rests {
+mod tests {
     use super::Cache;
 
     #[test]
