@@ -26,8 +26,17 @@ impl<K, V> Cache<K, V> where K: Eq + std::hash::Hash {
         self.map.insert(key, value);
     }
 
-    pub fn get(&self, key: &K) -> Option<&V> {
-        self.map.get(key)
+    pub fn get(&mut self, key: &K) -> Option<&V> {
+        match self.map.get(key) {
+            Some(value) => {
+                self.stats.hit();
+                Some(value)
+            }
+            None => {
+                self.stats.miss();
+                None
+            }
+        }
     }
 
     pub fn stats(&self) {
