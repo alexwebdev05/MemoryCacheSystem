@@ -1,12 +1,13 @@
 use std::io;
 use std::io::Write;
+use std::sync::{Arc, Mutex};
 
 use memory_cache_system::Cache;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Variables
-    let mut cache: Option<Cache<String, String>> = None;
+    let cache: Arc<Mutex<Option<Cache<String, String>>>> = Arc::new(Mutex::new(None));
 
     // Start log
     println!("### MEMORY CACHE SYSTEM ###\n");
@@ -22,17 +23,19 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         match option.trim() {
             "new" => {
                 // Data
+                let mut guard = cache.lock().unwrap();
                 let mut new_capacity = String::new();
                 print!("Enter the cache capacity: ");
                 io::stdout().flush()?;
                 io::stdin().read_line(&mut new_capacity)?;
 
                 // Cache creation
-                cache = Some(Cache::<String, String>::new(new_capacity.trim().parse()?));
+                *guard = Some(Cache::<String, String>::new(new_capacity.trim().parse()?));
                 println!("Cache created with capacity {}", new_capacity);
             },
             "put" => {
                 // Data
+                let mut guard = cache.lock().unwrap();
                 let mut key = String::new();
                 let mut value = String::new();
                 print!("Enter the value key: ");
@@ -43,19 +46,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 io::stdin().read_line(&mut value)?;
 
                 // Insert data
-                if let Some(ref mut c) = cache {
+                if let Some(ref mut c) = *guard {
                     c.put(key.trim().parse()?, value.trim().to_string());
                 }
 
             },
             "get" => {
                 // Data
+                let mut guard = cache.lock().unwrap();
                 let mut key = String::new();
                 print!("Enter value key: ");
                 io::stdout().flush()?;
                 io::stdin().read_line(&mut key)?;
 
-                if let Some(ref mut c) = cache {
+                if let Some(ref mut c) = *guard {
                     match c.get(&key.trim().to_string()) {
                         Some(value) => {
                             println!("Value: {}", value)
@@ -66,7 +70,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
             },
             "stats" => {
-                if let Some(ref mut c) = cache {
+                let mut guard = cache.lock().unwrap();
+                if let Some(ref mut c) = *guard {
                     c.stats();
                 }
                 println!("Cache does not exist")

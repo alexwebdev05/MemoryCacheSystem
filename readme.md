@@ -60,7 +60,7 @@ src/
 ### Phase 3: Basic Thread Safety
 **Goal**: Make cache accessible from multiple threads
 
-- [ ] Wrap `Cache` in `Arc<Mutex<Cache<K, V>>>`
+- [x] Wrap `Cache` in `Arc<Mutex<Cache<K, V>>>`
 - [ ] Create helper: `create_shared_cache(capacity)`
 - [ ] Create 3 threads accessing same cache:
   - Thread 1: Write 100 elements
