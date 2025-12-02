@@ -4,7 +4,7 @@ use super::CacheStatus;
 
 pub struct Cache<K, V> {
     map: HashMap<K, V>,
-    capacity: usize,
+    pub capacity: usize,
     stats: CacheStatus
 }
 

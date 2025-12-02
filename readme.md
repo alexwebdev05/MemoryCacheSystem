@@ -61,7 +61,7 @@ src/
 **Goal**: Make cache accessible from multiple threads
 
 - [x] Wrap `Cache` in `Arc<Mutex<Cache<K, V>>>`
-- [ ] Create helper: `create_shared_cache(capacity)`
+- [x] Create helper: `create_shared_cache(capacity)`
 - [ ] Create 3 threads accessing same cache:
   - Thread 1: Write 100 elements
   - Thread 2: Read random elements
