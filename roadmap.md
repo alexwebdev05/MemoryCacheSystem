@@ -85,7 +85,7 @@ src/
 - Each node: `key`, `value`, `prev`, `next`
 
 **Tasks**:
-- [ ] Create `src/lru.rs` with `LRUCache<K, V>`
+- [ ] Create `src/cache/lru.rs` with `LRUCache<K, V>`
 - [ ] Create `Node<K, V>` struct with:
   - `key: K`, `value: V`
   - `prev: Option<Rc<RefCell<Node<K, V>>>>`
