@@ -1,5 +1,3 @@
-
-
 pub struct CacheStatus {
     hits: usize,
     misses: usize

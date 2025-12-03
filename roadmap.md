@@ -62,13 +62,13 @@ src/
 
 - [x] Wrap `Cache` in `Arc<Mutex<Cache<K, V>>>`
 - [x] Create helper: `create_shared_cache(capacity)`
-- [ ] Create 3 threads accessing same cache:
-  - Thread 1: Write 100 elements
+- [x] Create 3 threads accessing same cache:
+  - Thread 1: Write 50% elements
   - Thread 2: Read random elements
-  - Thread 3: Write 100 more elements
-- [ ] Use `.lock().unwrap()` for access
-- [ ] Wait for threads with `join()`
-- [ ] Print final statistics
+  - Thread 3: Write 50% more elements
+- [x] Use `.lock().unwrap()` for access
+- [x] Wait for threads with `join()`
+- [x] Print final statistics
 
 **Concepts**: `Arc<T>`, `Mutex<T>`, `thread::spawn`, `JoinHandle`
 
