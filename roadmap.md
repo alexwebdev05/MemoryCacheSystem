@@ -85,16 +85,16 @@ src/
 - Each node: `key`, `value`, `prev`, `next`
 
 **Tasks**:
-- [ ] Create `src/cache/lru.rs` with `LRUCache<K, V>`
-- [ ] Create `Node<K, V>` struct with:
+- [x] Create `src/cache/lru.rs` with `LRUCache<K, V>`
+- [x] Create `Node<K, V>` struct with:
   - `key: K`, `value: V`
   - `prev: Option<Rc<RefCell<Node<K, V>>>>`
   - `next: Option<Rc<RefCell<Node<K, V>>>>`
-- [ ] Implement doubly-linked list with `Rc<RefCell<>>`
-- [ ] Implement `get()`: move node to front (most recent)
-- [ ] Implement `put()`: add to front, evict from end if full
-- [ ] Method `remove_lru()` removes last node
-- [ ] Write comprehensive LRU tests
+- [x] Implement doubly-linked list with `Rc<RefCell<>>`
+- [x] Implement `get()`: move node to front (most recent)
+- [x] Implement `put()`: add to front, evict from end if full
+- [x] Method `remove_lru()` removes last node
+- [x] Write comprehensive LRU tests
 
 **Concepts**: `Box<T>`, `Rc<T>`, `RefCell<T>`, interior mutability, doubly-linked list
 

@@ -1,3 +1,4 @@
+#[derive(PartialEq, Debug)]
 pub struct CacheStatus {
     hits: usize,
     misses: usize
