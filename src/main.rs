@@ -1,13 +1,14 @@
 use std::io;
 use std::io::Write;
-use rand::prelude::*;
+use rand::prelude::Rng;
+use std::sync::RwLock;
 
 use memory_cache_system::LruCache;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Variables
-    let mut cache: Option<LruCache<String, String>> = None;
+    let mut cache: Option<RwLock<LruCache<String, String>>> = None;
 
     // Start log
     println!("### MEMORY CACHE SYSTEM ###\n");
@@ -29,7 +30,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 io::stdin().read_line(&mut new_capacity)?;
 
                 // Cache creation
-                cache = Some(LruCache::new(new_capacity.trim().parse().unwrap()));
+                cache = Some(RwLock::new(LruCache::new(new_capacity.trim().parse().unwrap())));
                 println!("Cache created with capacity {}", new_capacity);
             },
             "demo" => {
@@ -37,23 +38,23 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 if let Some(c) = cache.as_mut() {
                     let mut rng = rand::rng();
                     // Preset capacity
-                    let capacity = c.capacity;
+                    let capacity = c.read().unwrap().capacity;
                     // Fill 50% of capacity
                     for i in 0..capacity/2 {
                         // Insert
-                        c.put(format!("Key: {}", i), format!("Value: {}", rng.random_range(0..capacity)));
+                        c.write().unwrap().put(format!("Key: {}", i), format!("Value: {}", rng.random_range(0..capacity)));
                     }
                     // Get all items that are creating
                     for _ in 0..capacity {
-                        c.get(&format!("Key: {}", rng.random_range(0..capacity)));
+                        c.write().unwrap().get(&format!("Key: {}", rng.random_range(0..capacity)));
                     }
                     // Fill 50% of capacity
                     for i in capacity/2..capacity {
                         // Insert
-                        c.put(format!("Key: {}", i), format!("Value: {}", rng.random_range(0..capacity)));
+                        c.write().unwrap().put(format!("Key: {}", i), format!("Value: {}", rng.random_range(0..capacity)));
                     }
                     // Stats
-                    c.stats();
+                    c.read().unwrap().stats();
                 } else {
                     println!("Create a new cache to use this function");
                 }
@@ -74,7 +75,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
                 // Insert data
                 if let Some(c) = cache.as_mut() {
-                    c.put(key, value);
+                    c.write().unwrap().put(key, value);
                 }
             },
             "get" => {
@@ -88,7 +89,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
                 // Get node
                 if let Some(c) = cache.as_mut() {
-                    let value = c.get(&key);
+                    let value = c.write().unwrap().get(&key);
                     match value {
                         Some(v) => println!("Response: {}", v),
                         None => println!("Error: key not found")
@@ -97,7 +98,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             },
             "stats" => {
                 if let Some(c) = cache.as_mut() {
-                    c.stats();
+                    c.read().unwrap().stats();
                 } else {
                     println!("Cache does not exist");
                 }  

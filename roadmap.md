@@ -107,7 +107,7 @@ src/
 - [x] Update `put()` to auto-evict when full
 - [x] Increment `stats.evictions` on eviction
 - [x] Update all tests
-- [ ] Verify statistics include correct eviction counts
+- [x] Verify statistics include correct eviction counts
 
 **Concepts**: Composition, refactoring
 
