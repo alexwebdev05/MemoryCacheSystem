@@ -103,10 +103,10 @@ src/
 ### Phase 5: Integrate LRU into Cache
 **Goal**: Replace simple HashMap with LRUCache
 
-- [ ] Change `Cache` to use `LRUCache` internally
-- [ ] Update `put()` to auto-evict when full
-- [ ] Increment `stats.evictions` on eviction
-- [ ] Update all tests
+- [x] Change `Cache` to use `LRUCache` internally
+- [x] Update `put()` to auto-evict when full
+- [x] Increment `stats.evictions` on eviction
+- [x] Update all tests
 - [ ] Verify statistics include correct eviction counts
 
 **Concepts**: Composition, refactoring

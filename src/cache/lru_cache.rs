@@ -3,8 +3,9 @@ use std::rc::Rc;
 
 use super::CacheStatus;
 
+#[derive(Debug)]
 pub struct LruCache<K, V> {
-    map: HashMap<K, Rc<RefCell<Node<K, V>>>>,
+    pub map: HashMap<K, Rc<RefCell<Node<K, V>>>>,
     pub capacity: usize,
     head: Option<Rc<RefCell<Node<K, V>>>>,
     tail: Option<Rc<RefCell<Node<K, V>>>>,
