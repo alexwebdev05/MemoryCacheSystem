@@ -1,2 +1,2 @@
 pub mod cache;
-pub use cache::{Cache, LruCache};
+pub use cache::LruCache;
