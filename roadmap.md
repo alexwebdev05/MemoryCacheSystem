@@ -121,9 +121,8 @@ src/
 - `RwLock`: Multiple simultaneous readers OR one writer
 
 **Tasks**:
-- [ ] Change `Arc<Mutex<Cache>>` to `Arc<RwLock<Cache>>`
-- [ ] Use `.read().unwrap()` for reads (`get`)
-- [ ] Use `.write().unwrap()` for writes (`put`)
+- [x] Use `.read().unwrap()` for reads (`get`)
+- [x] Use `.write().unwrap()` for writes (`put`)
 - [ ] Create 10 reader threads and 2 writer threads
 - [ ] Benchmark: compare `Mutex` vs `RwLock` performance
 
